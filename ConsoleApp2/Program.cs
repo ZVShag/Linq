@@ -67,7 +67,7 @@ namespace ConsoleApp2
                     Manufacturing = country[(new Random()).Next(0, country.Length - 1)],
                     Count = (new Random()).Next(0, 100)});
             }
-            var result=from i in products where i.Price>5000 select i;
+            var result=from i in products where i.Price>5000 orderby i.Price select i;
             foreach(var item in result) Console.WriteLine(item) ;
         }
 
