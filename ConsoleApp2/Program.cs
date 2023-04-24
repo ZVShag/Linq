@@ -13,6 +13,7 @@ namespace ConsoleApp2
         public int Price { get; set; }
         public string Manufacturing { get; set; }
         public int Count { get; set; }
+      
 
         public override string ToString()
         {
@@ -68,7 +69,11 @@ namespace ConsoleApp2
                     Count = (new Random()).Next(0, 100)});
             }
             var result=from i in products where i.Price>5000 orderby i.Price select i;
-            foreach(var item in result) Console.WriteLine(item) ;
+            foreach (var item in result) { Console.Write(item); Console.WriteLine("  "+item.Count * item.Price); }
+            Console.WriteLine("Take 5 string: ");
+            foreach (var item in result.Take(5)) { Console.Write(item); Console.WriteLine("  " + item.Count * item.Price); }
+            Console.WriteLine("Skip 5 string: ");
+            foreach (var item in result.Skip(5)) { Console.Write(item); Console.WriteLine("  " + item.Count * item.Price); }
         }
 
     }
