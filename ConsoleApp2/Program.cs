@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ConsoleApp2
@@ -23,8 +24,9 @@ namespace ConsoleApp2
     {
         static void Main(string[] args)
         {
-            first_q();
-            
+            Linq_method();
+
+
         }
         private static void first_q()
         {
@@ -57,8 +59,16 @@ namespace ConsoleApp2
             List<Product> products = new List<Product>();
             for (int i = 0; i < 100; i++)
             {
-
+                Thread.Sleep(5);
+                products.Add(new Product
+                {
+                    Name = "Product" + (++i),
+                    Price = (new Random()).Next(0, 10000),
+                    Manufacturing = country[(new Random()).Next(0, country.Length - 1)],
+                    Count = (new Random()).Next(0, 100)});
             }
+            var result=from i in products where i.Price>5000 select i;
+            foreach(var item in result) Console.WriteLine(item) ;
         }
 
     }
